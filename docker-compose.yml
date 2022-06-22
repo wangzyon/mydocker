@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+    dev:
+        image: wzy_image
+        container_name: wzy_container
+        build: 
+            context: ./components
+            dockerfile: Dockerfile-cu111-cp38-torch1.8.2-linux_x86_64
+        shm_size: '64gb'
+        cap_add:
+            - ALL
+        ports:
+            - "12009:6379"
+            - "12010:12010"
+            - "12011:12011"
+            - "12012:12012"
+            - "12022:22"
+        volumes:
+            - ./volume:/volume
+        networks:
+            - trt_net
+        stdin_open: true
+        tty: true
+        deploy:
+          resources:
+            reservations:
+              devices:
+                - driver: nvidia
+                  count: 1
+                  capabilities: [gpu]
+                  
+networks:
+  trt_net:
