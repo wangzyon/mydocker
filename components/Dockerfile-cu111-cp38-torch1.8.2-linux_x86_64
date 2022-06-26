@@ -23,7 +23,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 RUN apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
 
 # 安装基础环境
-RUN apt-get update && apt-get install -y apt-utils sudo apt-transport-https vim build-essential git unzip zip libssl-dev iptables openssh-server net-tools curl lsof net-tools netcat tree cmake libsm6 libxext6 opencv-python-headless lrzsz # ffmpeg
+RUN apt-get update && apt-get install -y apt-utils sudo apt-transport-https vim build-essential git unzip zip libssl-dev iptables openssh-server net-tools curl lsof net-tools netcat tree cmake libsm6 libxext6 lrzsz # ffmpeg
 
 # 开启所有用户的ssh登录许可
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && \
@@ -87,7 +87,7 @@ custom_channels:\n\
 WORKDIR /tmp
 
 # 默认安装python包
-RUN /usr/local/anaconda3/bin/pip install yacs termcolor pynvml redis gunicorn aiohttp pybind11 tabulate trtpy funcy scikit-multilearn opencv-python torch-1.8.2+cu111-cp38-cp38-linux_x86_64.whl torchaudio-0.8.2-cp38-cp38-linux_x86_64.whl torchvision-0.9.2+cu111-cp38-cp38-linux_x86_64.whl
+RUN /usr/local/anaconda3/bin/pip install yacs termcolor pynvml redis gunicorn aiohttp pybind11 tabulate trtpy funcy scikit-multilearn opencv-python opencv-python-headless torch-1.8.2+cu111-cp38-cp38-linux_x86_64.whl torchaudio-0.8.2-cp38-cp38-linux_x86_64.whl torchvision-0.9.2+cu111-cp38-cp38-linux_x86_64.whl
     
 # 配置普通用户环境变量
 RUN echo export PATH=/usr/local/anaconda3/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin >> ${userhome}/.bashrc &&  /bin/bash -c 'source ${userhome}/.bashrc'

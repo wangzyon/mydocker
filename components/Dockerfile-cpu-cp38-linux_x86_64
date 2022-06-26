@@ -21,7 +21,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 
 
 # 安装基础环境
-RUN apt-get update && apt-get install -y apt-utils sudo apt-transport-https vim build-essential git unzip zip libssl-dev iptables openssh-server net-tools curl lsof net-tools netcat tree cmake libsm6 libxext6 opencv-python-headless lrzsz # ffmpeg
+RUN apt-get update && apt-get install -y apt-utils sudo apt-transport-https vim build-essential git unzip zip libssl-dev iptables openssh-server net-tools curl lsof net-tools netcat tree cmake libsm6 libxext6 lrzsz # ffmpeg
 
 # 开启所有用户的ssh登录许可
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && \
@@ -85,7 +85,7 @@ custom_channels:\n\
 WORKDIR /tmp
 
 # 默认安装python包
-RUN /usr/local/anaconda3/bin/pip install yacs termcolor pynvml redis gunicorn aiohttp pybind11 tabulate trtpy funcy scikit-multilearn opencv-python
+RUN /usr/local/anaconda3/bin/pip install yacs termcolor pynvml redis gunicorn aiohttp pybind11 tabulate trtpy funcy scikit-multilearn opencv-python opencv-python-headless
     
 # 配置普通用户环境变量
 RUN echo export PATH=/usr/local/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin >> ${userhome}/.bashrc &&  /bin/bash -c 'source ${userhome}/.bashrc'
