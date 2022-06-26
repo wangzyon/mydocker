@@ -21,7 +21,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 
 
 # 安装基础环境
-RUN apt-get update && apt-get install -y apt-utils sudo apt-transport-https vim build-essential git unzip zip libssl-dev iptables openssh-server net-tools curl lsof net-tools netcat tree cmake libsm6 libxext6 lrzsz # ffmpeg
+RUN apt-get update && apt-get install -y apt-utils sudo apt-transport-https vim build-essential git unzip zip libssl-dev iptables openssh-server net-tools curl lsof net-tools netcat tree cmake libsm6 libxext6 opencv-python-headless lrzsz # ffmpeg
 
 # 开启所有用户的ssh登录许可
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && \
