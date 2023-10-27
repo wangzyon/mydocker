@@ -146,7 +146,7 @@ docker exec -it <container ID> /bin/bash
 
 ```bash
 # v2.6.0可以替换为新版本，新版本号在https://github.com/docker/compose中查看，github访问太慢，可以用daocloud下载
-sudo curl -L https://get.daocloud.io/docker/compose/releases/download/v2.6.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
 # 查看安装是否成功
 docker-compose --version
